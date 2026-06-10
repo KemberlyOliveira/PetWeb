@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Listar Animal</title>
+</head>
+<body>
+    <h2>Lista de Animais cadastrados</h2>
+
+<!-- Tabela com todos os animais -->
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Raça</th>
+        <th>Tutor</th>
+        <th>Ações</th>
+    </tr>
+
+    <!-- Itera sobre a lista de animais (padronização em singular) -->
+    <tr th:each="animal : ${animal}">
+        <td th:text="${animal.id_animal}"></td>
+        <td th:text="${animal.nome_animal}"></td>
+        <td th:text="${animal.idade}"></td>
+        <td th:text="${animal.raca}"></td>
+        <td th:text="${animal.tutor.nome_tutor}"></td>
+        
+        <td>
+            <!-- Link para editar o animal -->
+            <a th:href="@{/animalCTR/formAlterar/{id}(id=${animal.id_animal})}">Editar</a>
+               
+            <!-- Link para deletar o animal com confirmação -->
+            <a th:href="@{/animalCTR/deletarAnimal/{id}(id=${animal.id_animal})}"
+               onclick="return confirm('Deseja realmente excluir este animal?')">Excluir</a>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+<!-- Link para ir para o formulário de cadastro de novo animal -->
+<a th:href="@{/animalCTR/formCadastrar}">Novo Animal</a>
+
+</body>
+</html>

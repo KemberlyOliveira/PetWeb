@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Cadastrar Animal</title>
+</head>
+<body>
+    <h2>Cadastro de Animal</h2>
+
+<!-- Formulário com a ação para salvar/alterar animal -->
+<form th:action="@{/animalCTR/salvarAnimal}" th:object="${animal}" method="post">
+
+    <label>Nome do Animal:</label>
+    <input type="text" th:field="*{nome_animal}" required />
+    <br><br>
+
+    <label>Idade:</label>
+    <input type="number" th:field="*{idade}" required />
+    <br><br>
+
+    <label>Raça:</label>
+    <input type="text" th:field="*{raca}" required />
+    <br><br>
+
+    <label>Tutor:</label>
+    <select th:field="*{tutor}" required>
+        <option value="">-- Selecione um Tutor --</option>
+        <!-- Aqui você pode adicionar as opções de tutores -->
+    </select>
+    <br><br>
+
+    <button type="submit">Salvar/Alterar</button>
+
+</form>
+
+<br>
+
+<!-- Link para voltar à página de listagem de animais -->
+<a th:href="@{/animalCTR/listarAnimal}">Voltar para a Lista de Animais</a>
+
+</body>
+</html>

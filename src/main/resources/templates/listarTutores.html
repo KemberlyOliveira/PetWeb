@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Listar Tutores</title>
+</head>
+<body>
+    <h2>Lista de Tutores cadastrados</h2>
+
+<!-- Tabela com todos os tutores -->
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Endereço</th>
+        <th>Ações</th>
+    </tr>
+
+    <!-- Itera sobre a lista de tutores vinda do controller -->
+    <tr th:each="tutor : ${tutores}">
+        <td th:text="${tutor.id}"></td>
+        <td th:text="${tutor.nome}"></td>
+        <td th:text="${tutor.email}"></td>
+        <td th:text="${tutor.telefone}"></td>
+        <td th:text="${tutor.endereco}"></td>
+        
+        <td>
+            <!-- Link para editar o tutor -->
+            <a th:href="@{/tutorCTR/formAlterar/{id}(id=${tutor.id})}">Editar</a>
+               
+            <!-- Link para deletar o tutor com confirmação -->
+            <a th:href="@{/tutorCTR/deletarTutor/{id}(id=${tutor.id})}"
+               onclick="return confirm('Deseja realmente excluir este tutor?')">Excluir</a>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+<!-- Link para ir para o formulário de cadastro de novo tutor -->
+<a th:href="@{/tutorCTR/formCadastrar}">Novo Tutor</a>
+
+</body>
+</html>
