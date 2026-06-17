@@ -1,12 +1,17 @@
 package com.br.petWeb.petShop.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.petWeb.petShop.Entity.Animal;
+import com.br.petWeb.petShop.Entity.Tutor;
+import com.br.petWeb.petShop.Repository.TutorRepository;
 import com.br.petWeb.petShop.Service.AnimalService;
+import com.br.petWeb.petShop.Service.TutorService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,11 +25,26 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService; 
 
-    @GetMapping("/main")
-    public String telaMain() {
+
+
+  
+@Autowired
+    private TutorRepository tutorRepository; 
+
+    // Altere a rota abaixo para a rota real que abre o seu formulário HTML
+    @GetMapping("/animal/novo") 
+    public String abrirFormularioCadastro(Model model) {
         
-        return "main";
+        // 1. Envia um objeto Animal vazio para o th:object do formulário
+        model.addAttribute("animal", new Animal());
+        
+        // 2. Busca os tutores e envia para o th:each do <select>
+        List<Tutor> listaTutores = tutorRepository.findAll();
+        model.addAttribute("todosOsTutores", listaTutores);
+        
+        return "formularioAnimal"; // Nome do seu arquivo HTML (sem o .html)
     }
+
 
 
     @GetMapping("/listarAnimal")
@@ -33,12 +53,17 @@ public class AnimalController {
         
         return "listarAnimal";
     }
-
-
+    
     @GetMapping("/formCadastrar")
     public String telaCadastraAnimal(Model oModel) {
         oModel.addAttribute("animal", new Animal());
         
+        List<Tutor> listaTutores = tutorRepository.findAll();
+        
+        // LINHA DEDO-DURO: Vai printar no console do eclipse/VS Code quantos tutores achou
+        System.out.println("=== QUANTIDADE DE TUTORES ACHADOS: " + listaTutores.size());
+        
+        oModel.addAttribute("todosOsTutores", listaTutores);
         return "cadastraAnimal";
     }
 

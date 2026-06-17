@@ -25,7 +25,14 @@
     <label>Tutor:</label>
     <select th:field="*{tutor}" required>
         <option value="">-- Selecione um Tutor --</option>
-        <!-- Aqui você pode adicionar as opções de tutores -->
+        
+        <option th:each="tutor : ${todosOsTutores}" 
+                th:value="${tutor.id_tutor}" 
+                th:text="${tutor.nome_tutor}">
+            Nome do Tutor
+        </option>
+
+        
     </select>
     <br><br>
 

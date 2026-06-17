@@ -14,12 +14,9 @@ Cadastratutor · HTML
 <form th:action="@{/tutorCTR/salvarTutor}" th:object="${tutor}" method="post">
  
     <label>Nome Completo:</label>
-    <input type="text" th:field="*{nome}" required />
+    <input type="text" th:field="*{nome_tutor}" required />
     <br><br>
  
-    <label>Email:</label>
-    <input type="email" th:field="*{email}" />
-    <br><br>
  
     <label>Telefone:</label>
     <input type="text" th:field="*{telefone}" required />

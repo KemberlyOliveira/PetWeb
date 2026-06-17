@@ -11,3 +11,5 @@ public class PetShopApplication {
 	}
 
 }
+
+//    mvn spring-boot:run

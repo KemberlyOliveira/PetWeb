@@ -30,7 +30,7 @@ public class Animal {
     private String raca;
 
     @ManyToOne
-    @JoinColumn(name = "tutor_codigo", nullable = false)
+    @JoinColumn(name = "id_tutor", nullable = false)
     private Tutor tutor;
 
 

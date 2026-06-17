@@ -50,7 +50,7 @@ public class AnimalService {
     }
 
 
-    public List<Animal> buscarPorTutor(Tutor tutor) {
-        return animalRepository.findByTutor(tutor);
-    }
+   // public List<Animal> buscarPorTutor(Tutor tutor) {
+    //    return animalRepository.findByTutor(tutor);
+    //}
 }
